@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Typography, Divider } from '@mui/material';
 
 import './App.css';
 import FormComponent from './components/FormComponent';
 import ListComponent from './components/ListComponent';
+import { StarWarsComponent } from './components/StarWarsComponent';
+import { PicOfTheDayComponent } from './components/PicOfTheDayComponent';
 
 function App() {
     const [list, setList] = useState([]);
@@ -31,12 +33,20 @@ function App() {
         });
     }
 
+    useEffect(() => {
+        console.log(`Next item id: ${nextId}`);
+    }, [nextId]);
+
     return (
         <div className='App'>
             <Typography variant='h3' gutterBottom>My Shopping List</Typography>
             <FormComponent handleAddItem={handleAddItem} nextId={nextId} />
             <Divider />
             <ListComponent list={list} handleCheck={handleCheck} handleRemove={handleRemove} />
+            <Divider />
+            <StarWarsComponent />
+            <Divider />
+            <PicOfTheDayComponent />
         </div>
     );
 }
