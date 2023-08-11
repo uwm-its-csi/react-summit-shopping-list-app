@@ -1,10 +1,19 @@
+import { useContext } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-
+import { AppContext } from '../root/AppContext';
 import RowComponent from "./RowComponent";
+import { TotalComponent } from './TotalComponent';
 
-function ListComponent(props) {
+function ListComponent() {
+    const {
+        list,
+        handleCheck,
+        handleRemove
+    } = useContext(AppContext);
+
 
     return (
+        <>
             <TableContainer component={Paper} sx={{ maxWidth: 600 }}>
                 <Table>
                     <TableHead>
@@ -16,19 +25,20 @@ function ListComponent(props) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {props.list.map((item, index) => {
+                        {list.map((item, index) => {
                             return (
                                 <RowComponent key={item.id}
                                             item={item}
                                             index={index}
-                                            handleCheck={props.handleCheck}
-                                            handleRemove={props.handleRemove} />
+                                            handleCheck={handleCheck}
+                                            handleRemove={handleRemove} />
                             );
                         })}
                     </TableBody>
                 </Table>
             </TableContainer>
-
+            <TotalComponent />
+        </>
     );
 }
 

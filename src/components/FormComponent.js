@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { TextField, Button, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import { AppContext } from '../root/AppContext';
 
-function FormComponent(props) {
+export const FormComponent = () => {
+    const {
+        handleAddItem,
+        nextId
+    } = useContext(AppContext);
+
     const [itemName, setItemName] = useState('');
     const [quantity, setQuantity] = useState(1);
     
@@ -18,13 +24,13 @@ function FormComponent(props) {
 
     const handleSubmit = (e) => {
         const itemToAdd = {
-            id: props.nextId,
+            id: nextId,
             name: itemName,
             quantity: quantity,
             checked: false
         }
 
-        props.handleAddItem(itemToAdd);
+        handleAddItem(itemToAdd);
 
         setItemName('');
         setQuantity(1);
@@ -74,5 +80,3 @@ function FormComponent(props) {
         </>
     );
 }
-
-export default FormComponent;
