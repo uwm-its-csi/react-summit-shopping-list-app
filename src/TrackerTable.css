@@ -1,0 +1,113 @@
+.MuiTableCell-head {
+    background-color: #32006e;
+    color: white;
+    font-size: 14px;
+}
+
+.MuiTableCell-detail-head {
+    background-color: #e5f6fd;
+    color: black;
+    font-size: 14px;
+}
+
+.Mui-TableHeadCell-Content-Actions .MuiIconButton-root {
+    color: white;
+}
+
+.MuiDataGrid-columnHeader .MuiSvgIcon-root {
+    color: white;
+}
+
+.MuiDataGrid-columnHeaders {
+    color: white;
+    background-color: #32006e !important;
+}
+
+.MuiTableCell-row {
+    font-size: 12px !important;
+}
+
+.MuiTableCell-root {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+.MuiSelect-select {
+    font-size: 12px !important;
+}
+
+div[class^="MUIDataTableHeadCell-sortActive-"], div[class*=" MUIDataTableHeadCell-sortActive-"] {
+    color: white !important;
+}
+
+.MuiTableSortLabel-root.MuiTableSortLabel-active.MuiTableSortLabel-root.MuiTableSortLabel-active .MuiTableSortLabel-icon {
+    color: white !important;
+}
+
+.MuiInputBase-root {
+    font-size: 12px !important;
+}
+
+.Mui-TableHeadCell .MuiBox-root {
+    color: white !important;
+}
+
+.MuiSvgIcon-root.MuiTableSortLabel-icon {
+    color: white !important;
+}
+
+.Mui-TableHeadCell-Content-Wrapper .MuiButtonBase-root.MuiIconButton-root {
+    color: white !important;
+}
+
+.MuiTableCell-root.MuiTableCell-body.MuiButtonBase-root .MuiIconButton-root {
+    color: black !important;
+}
+
+.MuiDivider-root {
+    border-color: white !important;
+    border-width: 1px !important;
+}
+
+.MuiCheckbox-root {
+    color: red !important;
+}
+
+.MuiFormHelperText-root {
+    font-size: 10px !important;
+    color: red !important;
+}
+
+.MuiCollapse-wrapper .MuiInputBase-root {
+    font-size: 12px !important;
+    color: white;
+}
+
+.MuiCollapse-wrapper .MuiInputAdornment-root .MuiButtonBase-root {
+    color: white !important;
+}
+
+.input {
+    font-size: 14px !important;
+    color: #000 !important;
+}
+
+.MuiMenuItem-root.Mui-disabled {
+    font-size: 13px !important;
+    color: black !important;
+    opacity: 1 !important;
+}
+
+.MuiMenuItem-root {
+    font-size: 12px !important;
+    color: black !important;
+}
+
+.MuiFormControl-root {
+    font-size: 12px !important;
+    color: white !important;
+}
+
+.MuiToolbar-root.MuiToolbar-regular.MuiToolbar-gutters {
+    min-height: 48px;
+}

@@ -1,40 +1,42 @@
 import { useContext, useState } from "react";
 import { ItemContext } from './ItemContext';
 import { GridActionsCellItem, GridRowModes} from '@mui/x-data-grid';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Close';
 import { StripedDataGrid } from './StripedDataGrid';
+import { muiTheme } from './CreateTheme';
+import './TrackerTable.css'
 
 export default function ItemList() {
 
-    const { itemList } = useContext(ItemContext);
+    const { itemList, setItemList } = useContext(ItemContext);
 
     const [rowModesModel, setRowModesModel] = useState({});
     
-    // Handles the event when the encounter row editing has started
+    // Handles the event when the row editing has started
     const handleRowEditStart = (params,event) => {
         event.defaultMuiPrevented = true;
     };
 
-    // Handles the event when the encounter row editing has stopped
+    // Handles the event when the row editing has stopped
     const handleRowEditStop = (params, event) => {
         event.defaultMuiPrevented = true;
     };
 
-    // Handles the event when the encounter row edit icon has been clicked
+    // Handles the event when the row edit icon has been clicked
     const handleEditClick = (id) => () => {
         setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.Edit } });
     };
 
-    // Handles the event when the encounter row save icon has been clicked
+    // Handles the event when the row save icon has been clicked
     const handleSaveClick = (id) => () => {
         setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
     };
 
-    // Handles the event when the encounter row cancel icon has been clicked
+    // Handles the event when the row cancel icon has been clicked
     const handleCancelClick = (id) => () => {
         setRowModesModel({
             ...rowModesModel,
@@ -42,19 +44,15 @@ export default function ItemList() {
         });
     };
 
-    // Handles the event when the clinic row delete icon has been clicked
-    const handleDeleteClick = (row) => () => {
-        if (!window.confirm(`Are you sure you want to delete the item - ${row.item}?`)) {
-            return;
-        }
-        console.log('deleting the item:', row.item);
+    // Handles the event when the row delete icon has been clicked
+    const handleDeleteClick = (id) => () => {
+        setItemList(itemList.filter((row) => row.id !== id));
     };
     
-    // Handles the event when the encounter row needs to be updated
+    // Handles the event when the row needs to be updated
     const processRowUpdate = (newRow) => {
-        console.log('processRowUpdate', newRow);
-        //onUpdate(newRow);
         const updatedRow = { ...newRow, isNew: false };
+        setItemList(itemList.map((row) => (row.id === newRow.id ? updatedRow : row)));
         return updatedRow;
     };
 
@@ -65,11 +63,10 @@ export default function ItemList() {
             type: 'actions',
             headerName: 'Actions',
             headerClassName: 'MuiTableCell-head',
-            width: 70,
+            width: 200,
             cellClassName: 'actions',
-            getActions: ({ id, row }) => {
+            getActions: ({ id }) => {
                 const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
-
                 if (isInEditMode) {
                     return [
                         <GridActionsCellItem
@@ -98,27 +95,36 @@ export default function ItemList() {
                     <GridActionsCellItem
                         icon={<DeleteIcon />}
                         label="Delete"
-                        onClick={handleDeleteClick(row)}
+                        onClick={handleDeleteClick(id)}
                         color="error"
                     />
                 ];
             },
         },        
-        { field: 'item', headerName: 'Item', editable: true, width: 125, headerClassName: 'MuiTableCell-head', headerAlign: 'center', cellClassName: 'MuiTableCell-row' },
-        { field: 'quantity', headerName: 'Quantity', editable: true, width: 250, headerClassName: 'MuiTableCell-head', headerAlign: 'center', cellClassName: 'MuiTableCell-row' },
+        { field: 'item', headerName: 'Item', editable: true, width: 300, headerClassName: 'MuiTableCell-head', headerAlign: 'center', cellClassName: 'MuiTableCell-row' },
+        { field: 'quantity', headerName: 'Quantity', editable: true, width: 200, headerClassName: 'MuiTableCell-head', headerAlign: 'center', cellClassName: 'MuiTableCell-row' },
     ];
 
     return (
+        <><Typography
+            style={{ background: muiTheme.palette.primary.mainGradient }}
+            sx={{ p: 1 }}
+            variant="h5"
+            align='center'
+            color='white'
+        >
+            Shopping List Items
+        </Typography>
         <Box
             sx={{
                 bgcolor: '#fff',
                 border: "2px solid #bbb",
                 boxShadow: 1,
                 borderRadius: '16px',
-                m: 3,
+                m: 1,
                 p: 1,
                 minWidth: 200,
-                height: 300
+                height: 500
             }}
         >
             <StripedDataGrid
@@ -134,10 +140,10 @@ export default function ItemList() {
                 onRowEditStart={handleRowEditStart}
                 onRowEditStop={handleRowEditStop}
                 processRowUpdate={processRowUpdate}
-                getRowClassName={ (params) => params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd' }
-                pageSize={10}
+                getRowClassName={(params) => params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'}
+                pageSize={10} 
             />
-        </Box>
+        </Box></>
     );
 
 }

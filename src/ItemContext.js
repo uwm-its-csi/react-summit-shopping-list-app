@@ -32,7 +32,7 @@ function ItemProvider({ children }) {
     };
     
     return (
-        <ItemContext.Provider value={{ itemList, handleAdd, message }}>
+        <ItemContext.Provider value={{ itemList, setItemList, handleAdd, message }}>
             {children}
         </ItemContext.Provider>
       );
