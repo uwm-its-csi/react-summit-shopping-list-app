@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-
+import { randomId } from '@mui/x-data-grid-generator';
 // Define the Context
 const ItemContext = createContext(null)
 
@@ -26,7 +26,7 @@ function ItemProvider({ children }) {
     const handleAdd =(formValues)=> {
       const item = formValues.item;
       const quantity = formValues.quantity;
-      const addItem = {item: item, quantity: quantity};
+      const addItem = {id: randomId(), item: item, quantity: quantity};
       const items = [...itemList, addItem];
       setItemList(items);
     };

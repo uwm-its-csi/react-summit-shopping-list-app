@@ -2,6 +2,24 @@
   text-align: center;
 }
 
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  padding-bottom: 2.5rem;    /* Footer height */
+}
+
+.footer {
+  color: #fff;
+  background: linear-gradient(95deg,#32006e,#32006e 45%,#76236c);
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 .formLabel {
   display: inline-block;
   width: 95px;
