@@ -1,12 +1,14 @@
 {
-  "name": "to-do-list",
+  "name": "shoppingList",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.22.10",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.0",
-    "@mui/material": "^5.14.0",
+    "@mui/material": "^5.14.5",
+    "@react-md/avatar": "^5.1.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
