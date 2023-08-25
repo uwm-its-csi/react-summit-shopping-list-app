@@ -1,4 +1,8 @@
-import { useState } from 'react';
+//import { useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
+
+//export const AppContext = createContext(null);
+
 import { Typography, Divider } from '@mui/material';
 
 import './App.css';
@@ -34,7 +38,7 @@ function App() {
     return (
         <div className='App'>
             <Typography variant='h3' gutterBottom>My Shopping List</Typography>
-            <FormComponent handleAddItem={handleAddItem} nextId={nextId} />
+             <FormComponent handleAddItem={handleAddItem} nextId={nextId} />
             <Divider />
             <ListComponent list={list} handleCheck={handleCheck} handleRemove={handleRemove} />
         </div>
