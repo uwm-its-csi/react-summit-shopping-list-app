@@ -74,7 +74,6 @@ export const FormComponent = () => {
                 </IconButton>
                 &nbsp;
                 <Button variant='contained'
-                        id="submit"
                         onClick={handleSubmit}>Add To List</Button>
             </form>
         </>

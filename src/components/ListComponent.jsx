@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import { AppContext } from '../root/AppContext';
 import RowComponent from "./RowComponent";
 import { TotalComponent } from './TotalComponent';
@@ -8,7 +8,8 @@ function ListComponent() {
     const {
         list,
         handleCheck,
-        handleRemove
+        handleRemove,
+        handleSaveList,
     } = useContext(AppContext);
 
 
@@ -38,6 +39,7 @@ function ListComponent() {
                 </Table>
             </TableContainer>
             <TotalComponent />
+            <Button variant='contained' onClick={handleSaveList}>Save</Button>
         </>
     );
 }

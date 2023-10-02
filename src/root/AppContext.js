@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { shoppingListUrl } from '../constants';
 
 export const AppContext = createContext(null);
 AppContext.displayName = 'AppContext';
@@ -30,11 +31,43 @@ export const AppContextProvider = ({ children }) => {
         });
     }
 
+    const userid = 'rbeerma';
+
+    const handleSaveList = () => {
+        const url = shoppingListUrl;
+
+        const body = {
+            userID: userid,
+            list: list
+        }
+
+        fetch (url, {
+            method: 'POST',
+            body: JSON.stringify(body)
+        });
+    }
+
+    
+
+    useEffect(() => {
+        const url = shoppingListUrl + '?userid=' + userid;
+
+        async function fetchShoppingList() {
+            const response = await fetch(url);
+            const shoppingList = await response.json();
+            console.log(JSON.stringify(shoppingList));
+            setList(shoppingList);
+        }
+
+        fetchShoppingList();
+    }, []);
+
     useEffect(() => {
         console.log(`Next item id: ${nextId}`);
     }, [nextId]);
 
     useEffect(() => {
+        // Use reducer to get total items
         const initVal = 0;
         const total = list.reduce((acc, currItem) => acc + Number.parseInt(currItem.quantity), initVal);
         console.log(`Total items: ${total}`);
@@ -49,6 +82,7 @@ export const AppContextProvider = ({ children }) => {
         handleAddItem,
         handleCheck,
         handleRemove,
+        handleSaveList,
         totalItems,
         setTotalItems
     }

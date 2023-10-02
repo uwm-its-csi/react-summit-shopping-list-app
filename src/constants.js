@@ -1,0 +1,1 @@
+export const shoppingListUrl = 'https://rbeerma-shoppinglist.azurewebsites.net/api/shoppinglists';
