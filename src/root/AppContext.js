@@ -9,6 +9,8 @@ export const AppContextProvider = ({ children }) => {
     const [nextId, setNextId] = useState(0);
     const [totalItems, setTotalItems] = useState(0);
 
+    const userid = 'rbeerma';
+
     const handleAddItem = (itemToAdd) => {
         setList((prevList) => [
             ...prevList, itemToAdd
@@ -26,12 +28,12 @@ export const AppContextProvider = ({ children }) => {
     }
   
     const handleRemove = (index) => {
+        console.log(`Removing item with index: ${index}`);
+
         setList((prevList) => {
             return prevList.filter((_, i) => i !== index)
         });
     }
-
-    const userid = 'rbeerma';
 
     const handleSaveList = () => {
         const url = shoppingListUrl;
@@ -45,9 +47,7 @@ export const AppContextProvider = ({ children }) => {
             method: 'POST',
             body: JSON.stringify(body)
         });
-    }
-
-    
+    } 
 
     useEffect(() => {
         const url = shoppingListUrl + '?userid=' + userid;
@@ -57,6 +57,7 @@ export const AppContextProvider = ({ children }) => {
             const shoppingList = await response.json();
             console.log(JSON.stringify(shoppingList));
             setList(shoppingList);
+            setNextId(shoppingList.length);
         }
 
         fetchShoppingList();
