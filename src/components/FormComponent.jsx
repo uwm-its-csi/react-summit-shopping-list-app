@@ -18,17 +18,6 @@ export const FormComponent = () => {
     const [quantity, setQuantity] = useState(1);
     const [itemList, setItemList] = useState([]);
 
-    const handleChangeItem = (e, newValue) => {
-        if (typeof newValue === 'string') {
-            setItemName(newValue);
-        } else if (newValue && newValue.inputValue) {
-            // Create a new value from the user input
-            setItemName(newValue.inputValue);
-        } else {
-            setItemName(newValue);
-        }
-    }
-
     const handleChangeQuantity = (e) => {
         setQuantity(e.target.value);
     }
