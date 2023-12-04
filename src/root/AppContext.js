@@ -47,7 +47,19 @@ export const AppContextProvider = ({ children }) => {
             method: 'POST',
             body: JSON.stringify(body)
         });
-    } 
+    }
+
+    const getMaxId = (arr) => {
+        let max = 0;
+
+        arr.forEach(element => {
+            if (element.id > max) {
+                max = element.id;
+            }
+        });
+
+        return max;
+    }
 
     useEffect(() => {
         const url = shoppingListUrl + '?userid=' + userid;
@@ -57,7 +69,7 @@ export const AppContextProvider = ({ children }) => {
             const shoppingList = await response.json();
             console.log(JSON.stringify(shoppingList));
             setList(shoppingList);
-            setNextId(shoppingList.length);
+            setNextId(getMaxId(shoppingList) + 1);
         }
 
         fetchShoppingList();

@@ -11,7 +11,8 @@ const filter = createFilterOptions();
 export const FormComponent = () => {
     const {
         handleAddItem,
-        nextId
+        nextId,
+        setNextId
     } = useContext(AppContext);
 
     const [itemName, setItemName] = useState('');
@@ -66,14 +67,12 @@ export const FormComponent = () => {
                     id="item-name"
                     label='Item Name'
                     onChange={(event, newValue) => {
-                        console.log(`newValue: ${newValue}`);
-                        if (typeof newValue === 'string') {
-                            setItemName(newValue);
+                        console.log(`newValue: ${newValue.inputValue}`);
+                        if (typeof newValue.inputValue === 'string') {
+                            setItemName(newValue.inputValue);
                         } else if (newValue && newValue.inputValue) {
                             // Create a new value from the user input
                             setItemName(newValue.inputValue);
-                        } else {
-                            setItemName(newValue);
                         }
                     }}
                     value={itemName}
