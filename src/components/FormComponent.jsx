@@ -67,12 +67,13 @@ export const FormComponent = () => {
                     id="item-name"
                     label='Item Name'
                     onChange={(event, newValue) => {
-                        console.log(`newValue: ${newValue.inputValue}`);
                         if (typeof newValue.inputValue === 'string') {
+                            console.log(`newValue: ${newValue.inputValue}`);
                             setItemName(newValue.inputValue);
-                        } else if (newValue && newValue.inputValue) {
+                        } else if (newValue && newValue.name) {
+                            console.log(`selected existing item: ${newValue.name}`);
                             // Create a new value from the user input
-                            setItemName(newValue.inputValue);
+                            setItemName(newValue.name);
                         }
                     }}
                     value={itemName}
