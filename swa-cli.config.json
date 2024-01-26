@@ -1,12 +1,14 @@
 {
   "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
   "configurations": {
-    "react-summit-shopping-list-app": {
+    "rbeerma-shoppinglist-app": {
       "appLocation": ".",
       "outputLocation": "build",
       "appBuildCommand": "npm run build",
       "run": "npm start",
-      "appDevserverUrl": "http://localhost:3000"
+      "appDevserverUrl": "http://localhost:3000",
+      "subscription": "e11520ce-1c09-470f-a673-f97d1e981317",
+      "resourceGroup": "rg-ets-SS"
     }
   }
 }
