@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from "react";
-import { shoppingListUrl } from '../constants';
+import { shoppingListPath } from '../constants';
+
+const baseApiUrl = process.env.REACT_APP_BASE_API_URL;
 
 export const AppContext = createContext(null);
 AppContext.displayName = 'AppContext';
@@ -36,7 +38,7 @@ export const AppContextProvider = ({ children }) => {
     }
 
     const handleSaveList = () => {
-        const url = shoppingListUrl;
+        const url = baseApiUrl + shoppingListPath;
 
         const body = {
             userID: userid,
@@ -62,7 +64,7 @@ export const AppContextProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        const url = shoppingListUrl + '?userid=' + userid;
+        const url = baseApiUrl + shoppingListPath + '?userid=' + userid;
 
         async function fetchShoppingList() {
             const response = await fetch(url);

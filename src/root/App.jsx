@@ -1,25 +1,27 @@
 import { Typography, Divider } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Container from '@mui/material/Container';
 
 import './App.css';
 import { FormComponent } from '../components/FormComponent';
 import ListComponent from '../components/ListComponent';
-import { StarWarsComponent } from '../components/StarWarsComponent';
-import { PicOfTheDayComponent } from '../components/PicOfTheDayComponent';
 import { AppContextProvider } from './AppContext';
+
+const defaultTheme = createTheme();
 
 function App() {   
 
     return (
         <AppContextProvider>
             <div className='App'>
-                <Typography variant='h3' gutterBottom>My Shopping List</Typography>
-                <FormComponent />
-                <Divider />
-                <ListComponent />
-                <Divider />
-                <StarWarsComponent />
-                <Divider />
-                <PicOfTheDayComponent />
+                <ThemeProvider theme={defaultTheme}>
+                    <Container component="main" maxWidth="md">
+                        <Typography variant='h3' gutterBottom>My Shopping List</Typography>
+                        <FormComponent />
+                        <Divider />
+                        <ListComponent />
+                    </Container>
+                </ThemeProvider>
             </div>
         </AppContextProvider>
     );

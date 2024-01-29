@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Box } from '@mui/material';
 import { AppContext } from '../root/AppContext';
 import RowComponent from "./RowComponent";
 import { TotalComponent } from './TotalComponent';
@@ -14,7 +14,12 @@ function ListComponent() {
 
 
     return (
-        <>
+        <Box sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+        }}>
             <TableContainer component={Paper} sx={{ maxWidth: 600 }}>
                 <Table>
                     <TableHead>
@@ -40,7 +45,7 @@ function ListComponent() {
             </TableContainer>
             <TotalComponent />
             <Button variant='contained' onClick={handleSaveList}>Save</Button>
-        </>
+        </Box>
     );
 }
 
